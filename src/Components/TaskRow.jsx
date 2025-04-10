@@ -1,13 +1,16 @@
 import React from 'react'
-
-function TaskRow({task}) {
+const TaskRow =React.memo(({task})=> {
+    console.log("Rendering TaskRow", task.id); 
   return (
-      <tr className='border text-center h-12 ' >
+      <tr className='border text-center h-12 font-bold' >
+        
           <td className='w-62  bg-amber-50 '>{task.title}</td>
-          <td className='w-62  bg-amber-100' style={{ color: task.status === "To do" ? "red" : task.status === "Doing" ?  "yellow" : "green" }}> <span className='bg-stone-800 text-sm p-2 border-2  border-white rounded-2xl'>{task.status}</span> </td>
-          <td className='w-62  bg-amber-50'> {task.createdAt}</td>
+          <td className='w-62  bg-amber-100' style={{ backgroundColor: task.status === "To do" ? "red" : task.status === "Doing" ?  "yellow" : "green" }}> <span className='text-sm p-2 border-2  border-white rounded-2xl bg-amber-50'>{task.status}</span> </td>
+          <td className='w-62  bg-amber-50 '> 
+            { new Date(task.createdAt).toLocaleDateString()}</td>
       </tr>
-  )
-}
+  )}) 
+  
+
 
 export default TaskRow
