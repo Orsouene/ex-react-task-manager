@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-
+    const url = import.meta.env.VITE_URL
 function useTasks() {
       const [task, setTask] = useState([])
+
         async function getTasks() {
             try {
                 const fetchTasks = await fetch(url)
@@ -18,7 +19,7 @@ function useTasks() {
    const  removeTask = ()=>{}
    const  updateTask = ()=>{}
    console.log("testare",task)
-  return {task,useTasks}
+  return task
   
 }
 
