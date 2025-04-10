@@ -9,13 +9,13 @@ function App() {
     <>
    
         <BrowserRouter>  
-         <Navigation/>
-          <Routes>
-           
-              <Route path="/addtasks" Component={AddTask} />
-              <Route path="/" Component={TaskList} />
-     
-          </Routes>
+           <Navigation/>
+                <Routes>
+                
+                    <Route path="/addtasks" Component={AddTask} />
+                    <Route path="/" Component={TaskList} />
+          
+                </Routes>
         </BrowserRouter>
     </>
   )
