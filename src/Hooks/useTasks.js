@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
     const url = import.meta.env.VITE_URL
 function useTasks() {
-      const [task, setTask] = useState([])
+      const [tasks, setTask] = useState([])
 
         async function getTasks() {
             try {
@@ -18,8 +18,8 @@ function useTasks() {
    const  addTask = ()=>{}
    const  removeTask = ()=>{}
    const  updateTask = ()=>{}
-   console.log("testare",task)
-  return task
+   console.log("testare",tasks)
+  return { tasks, addTask, removeTask, updateTask }; 
   
 }
 
