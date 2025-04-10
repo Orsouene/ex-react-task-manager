@@ -17,12 +17,9 @@ function useTasks() {
    const  addTask = ()=>{}
    const  removeTask = ()=>{}
    const  updateTask = ()=>{}
-   
-  return (
-    <div>
-      
-    </div>
-  )
+   console.log("testare",task)
+  return {task,useTasks}
+  
 }
 
 export default useTasks
