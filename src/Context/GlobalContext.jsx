@@ -7,6 +7,7 @@ function GlobalProvider() {
             const fetchTasks = await fetch(url)
             const data = await fetchTasks.json()
             setTask(data)
+            console.log("recupero dei dati dal global context", data)
            
         }
         catch (error) {
