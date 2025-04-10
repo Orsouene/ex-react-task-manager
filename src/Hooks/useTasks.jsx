@@ -14,7 +14,10 @@ function useTasks() {
             }
         }
         useEffect(() => { getTasks() }, [])
-  
+   const  addTask = ()=>{}
+   const  removeTask = ()=>{}
+   const  updateTask = ()=>{}
+   
   return (
     <div>
       
