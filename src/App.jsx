@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { GlobalProvider } from "./Context/GlobalContext"
 import TaskList from "./Pages/TaskList" 
 import AddTask from "./Pages/AddTask"
 import Navigation from "./Components/Navigation";
@@ -7,7 +8,7 @@ function App() {
 
   return (
     <>
-   
+      <GlobalProvider>
         <BrowserRouter>  
            <Navigation/>
                 <Routes>
@@ -17,6 +18,7 @@ function App() {
           
                 </Routes>
         </BrowserRouter>
+      </GlobalProvider>
     </>
   )
 }
