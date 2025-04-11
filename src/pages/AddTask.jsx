@@ -5,16 +5,18 @@ function AddTask() {
   const [formTitle, setFormTitle] = useState("")
   const refDescrizione = useRef("")
   const refStato = useRef("")
-const myForm= {
- title : formTitle,
-  descrizione :  refDescrizione.current.value, 
-  stato :  refStato.current.value }
+
 
   
 
 
   //* funzione per gestire il form
   const handleForm = (e) => {
+    const myForm = {
+      title: formTitle,
+      descrizione: refDescrizione.current.value,
+      stato: refStato.current.value
+    }
            e.preventDefault()
          console.log(myForm)
   }
@@ -46,8 +48,8 @@ const myForm= {
                       <input type="text" name='title' value={formTitle} onChange={e => setFormTitle(e.target.value)} className='border rounded-2xl p-1 text-sm' />
                       <span className='text-red-600 text-xs'>{controllCamp}</span>
                       {/* Description */}
-                      <label htmlFor="Description">Description</label>
-                      <textarea type="text" name='description' ref={refDescrizione} className='border rounded-2xl p-1 text-sm' />
+                      <label htmlFor="description">Description</label>
+                      <textarea name='description' ref={refDescrizione} className='border rounded-2xl p-1 text-sm' />
                       {/* Status */}
                      <label htmlFor="status">Status</label>
                       <select type="text" name='status' ref={refStato} className='border rounded-2xl p-1 text-sm' defaultValue={"To do"} >
