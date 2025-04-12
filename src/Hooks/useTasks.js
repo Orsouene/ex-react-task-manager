@@ -6,12 +6,12 @@ function useTasks() {
 
   async function getTasks() {
     try {
-      const fetchTasks = await fetch(url);
-      const data = await fetchTasks.json();
-      setTask(data);
+          const fetchTasks = await fetch(url);
+          const data = await fetchTasks.json();
+          setTask(data);
     //   console.log("recupero dei dati dal global context", data);
     } catch (error) {
-      console.log("errore nel recupero dei dati ", error);
+          console.log("errore nel recupero dei dati ", error);
     }
   }
   useEffect(() => {
@@ -27,7 +27,7 @@ function useTasks() {
                 body: JSON.stringify(newTask),
     });
     const res= await sendData.json()
-  console.log(res)
+  // console.log(res)
     if (res.success===true) {
             return setTask([...tasks,newTask])
     } 
