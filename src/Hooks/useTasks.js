@@ -37,7 +37,28 @@ function useTasks() {
   };
 
 
-  const removeTask = () => {};
+  const removeTask = async (taskId) => {
+   const deleteData = await fetch(`${url}/${taskId}`,{
+      method:"DELETE",
+      headers:{
+        "content-type":"application/json"
+      }
+    })
+    const res=await deleteData.json()
+    if(res.success) {
+  const filtredTask = tasks.filter(el=>el.id!==taskId)
+   setTask(filtredTask) }  
+   else{
+    throw new Error(res.message)
+   }
+ 
+
+  };
+
+
+
+
+
   const updateTask = () => {};
   console.log("testare", tasks);
   return { tasks, addTask, removeTask, updateTask };
