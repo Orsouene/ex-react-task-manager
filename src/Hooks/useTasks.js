@@ -63,17 +63,14 @@ function useTasks() {
    });
 
  const {success,message,task:newTask}= await updatingData.json()
-if(success){
- setTask(prev=>prev.map(
-   oldTask=>oldTask.id===newTask.id?newTask:oldTask
- ) )
-}
+  if(success){
+              setTask(prev=>prev.map(
+                oldTask=>oldTask.id===newTask.id?newTask:oldTask
+              ) )
+             }
  } catch (error) {
    throw new Error(error)
  }
-   
- 
-
   };
 
   return { tasks, addTask, removeTask, updateTask };

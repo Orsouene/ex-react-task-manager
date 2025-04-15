@@ -4,18 +4,24 @@ import { GlobalContext } from "../Context/GlobalContext"
 import Modal from '../Components/Modal'
 import EditTaskModal from '../Components/EditTaskModal'
 
-function TaskDetail() {
+function TaskDetail() { 
+  //* Usare le fn e le tasks dichiarate nel costum hook
+   const { tasks, removeTask, updateTask } = useContext(GlobalContext) 
+  //*  Navigazione verso la pagina dei tasks
    const navigate = useNavigate()
    //*CONTATORE
    const [redirect, setRedirect]=useState(3)
-
-  const { tasks, removeTask, updateTask } = useContext(GlobalContext) 
-   const [show,setShow]=useState(false)
+//* il stato  del show per il modale del delete
+const [show,setShow]=useState(false)
+  //* il stato  del show per il modale del update
   const [showEdit,setShowEdit]=useState(false)
+  //* prendere il parametro dinamico "id" nella rotta attiva 
    const { id } = useParams()
+  //*  convertire ò'id da una stringa a un number
    const myId = parseInt(id)
+   //* cercare la task attuale in cui ci sono
    const selectedTask = tasks.find(el => el.id === myId)
-//*DELETE-TASK
+//*funzioen per gestire il delete del task
   const handleDeleteButton =async() =>{
    try {
          await removeTask(selectedTask.id) 
@@ -26,7 +32,7 @@ function TaskDetail() {
      alert("l'errore  : "+ error.message)
    }
   }
-
+//* Funzione per gestire l'update del task
   const handleUpdate = async (taskAggiornato)=>{
     try {
       await updateTask(taskAggiornato)
@@ -45,8 +51,6 @@ const handleShow = ()=>{
     return setShowEdit(!showEdit)
   }
    return (
-   
-   
         selectedTask ?  
           <div className='w-fit m-auto mt-10'>
                      <p> {selectedTask.title} </p>
@@ -65,14 +69,12 @@ const handleShow = ()=>{
                               show={show}
                               /> : null}
                          
-                         <EditTaskModal
-           task={selectedTask}
-                                   show={showEdit}
-                                    onClose={handleShowUpdate}
-                                   onSave={handleUpdate}
-
-
-         />
+                           <EditTaskModal
+                              task={selectedTask}
+                              show={showEdit}
+                              onClose={handleShowUpdate}
+                              onSave={handleUpdate}
+                           />
          </div> : 
                 <p> Nessun Task Trovato,
                     <span>
