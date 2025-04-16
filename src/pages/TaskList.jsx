@@ -8,7 +8,9 @@ function TaskList() {
   const [sortBy, setSortBy] = useState("createdAt")
   const [sortOrder, setSortOrder] = useState(1)
   const icon = sortOrder=== 1? " ⬆" : "⬇"
+  const [searchQuery, setSearchQuery]=useState("")
 
+  //* Gestione del Sort
   const handleSort = (campo)=>{
     // console.log(campo)
          if(sortBy===campo)
@@ -18,7 +20,9 @@ function TaskList() {
       setSortOrder(1)
   }
   }
-   const ordinamento =useMemo(()=>{
+
+//* ordine del array
+   const arrayOrdinato =useMemo(()=>{
     let orderStatus = {
       "To do" : 0,
       "Doing":1,
@@ -63,8 +67,14 @@ function TaskList() {
     }
      return tasks
    }, [tasks,sortBy,sortOrder])
-  return (
+  
+  
+   return (
     <div className='w-fit m-auto mt-20  p-20 rounded-2xl border-stone-800 border border-b-8 border-r-5 '>
+       <label htmlFor="" className='flex gap-1 mb-2 justify-center border-2 rounded-2xl  w-fit border-amber-200 m-auto p-2 border-b-4 border-r-4'>
+         <span className='border p-1'>Search</span>
+         <input className='border ' />
+      </label>
     
             <table >
         <thead className='border w-fit m-auto cursor-pointer '>
@@ -87,7 +97,7 @@ function TaskList() {
                         </thead>
                 
                         <tbody className='border ' >
-          {ordinamento.map((task) => (  <TaskRow key={task.id} task={task}/> ))}  
+          {arrayOrdinato.map((task) => (  <TaskRow key={task.id} task={task}/> ))}  
                         </tbody> 
             </table> 
     
