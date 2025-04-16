@@ -87,12 +87,15 @@ function TaskList() {
       </label>
     
     <table >
-                       <thead className='border w-fit m-auto cursor-pointer '>
+                       <thead className='border w-fit m-auto cursor-pointer  '>
+                       
+                                
                                   <tr className='bg-amber-100 '>
+                                    <th className='border '></th>
                                           <th onClick={() => handleSort("title")}>
                                                               Nome {sortBy ==="title" ? icon :""}
                                           </th>
-                                          <th onClick={() => handleSort("status")}>
+                                           <th className='border p' onClick={() => handleSort("status")}>
                                               Stato {sortBy === "status" ? icon : ""}
                                           </th>
                                      
