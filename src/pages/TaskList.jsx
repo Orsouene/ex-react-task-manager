@@ -1,6 +1,7 @@
-import React, { useContext, useMemo, useState } from 'react'
+import React, { useCallback, useContext, useMemo, useRef, useState } from 'react'
 import { GlobalContext } from '../Context/GlobalContext'
 import TaskRow from '../Components/TaskRow'
+import { debounce } from 'lodash'
 function TaskList() {
 
   const {tasks} = useContext(GlobalContext)
@@ -8,8 +9,7 @@ function TaskList() {
   const [sortBy, setSortBy] = useState("createdAt")
   const [sortOrder, setSortOrder] = useState(1)
   const icon = sortOrder=== 1? " ⬆" : "⬇"
-  const [searchQuery, setSearchQuery]=useState("")
-
+   const [searchQuery, setSearchQuery]=useState("")
   //* Gestione del Sort
   const handleSort = (campo)=>{
     // console.log(campo)
@@ -75,13 +75,15 @@ function TaskList() {
  return filtredArray
    }, [tasks, sortBy, sortOrder, searchQuery])
 
+//* Function debounce 
+  const debounceSearch = useCallback(debounce(setSearchQuery,500),[])
+        
 
    return (
     <div className='w-fit m-auto mt-20  p-20 rounded-2xl border-stone-800 border border-b-8 border-r-5 '>
        <label htmlFor="" className='flex gap-1 mb-2 justify-center border-2 rounded-2xl  w-fit border-stone-800 m-auto p-2 border-b-4 border-r-4'>
-         <span className='border p-1' onClick={()=>search()}>Search</span>
-         <input className='border ' value={searchQuery} onChange={e=>setSearchQuery(e.target.value)} />
-         <button className='cursor-pointer border p-1' onClick={()=>setSearchQuery("")}>Reset</button>
+         <input className='border ' onChange={(e) => debounceSearch(e.target.value)} />
+       
       </label>
     
     <table >
