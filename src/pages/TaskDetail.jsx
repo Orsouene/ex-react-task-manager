@@ -1,4 +1,6 @@
 import React, { useContext, useState } from 'react'
+import { IoTrashBinOutline } from "react-icons/io5";
+import { TfiPencilAlt } from "react-icons/tfi";
 import {  useNavigate, useParams } from 'react-router-dom'
 import { GlobalContext } from "../Context/GlobalContext"
 import Modal from '../Components/Modal'
@@ -52,15 +54,17 @@ const handleShow = ()=>{
   }
    return (
         selectedTask ?  
-          <div className='w-fit m-auto mt-10'>
-                     <p> {selectedTask.title} </p>
-                     <p> {selectedTask.description} </p>
-                     <p> {selectedTask.status} </p>
-                     <p> {selectedTask.createdAt} </p>
-                     <button onClick={handleShow } className='border p-1 cursor-pointer'>Delete Task
-                     </button>
-         <button onClick={handleShowUpdate } className='border p-1 cursor-pointer'>Modify Task
-                     </button>
+          <div className='w-96  m-auto mt-10 border p-5 rounded-2xl border-r-8 border-b-8 bg-amber-50 border-amber-800 flex flex-col gap-2  '>
+         <p className='border-2 border-r-4 border-b-4   border-amber-300  p-1'> Title : {selectedTask.title} </p>
+         <p className='border-2 border-r-4 border-b-4 border-amber-300  p-1'> <span >Description:</span>   {selectedTask.description} </p>
+         <p className='border-2 border-r-4 border-b-4 border-amber-300 p-1'> Status: {selectedTask.status} </p>
+         <p className='border-2 border-r-4 border-b-4 border-amber-300  p-1'> CreatedAt :  { new Date(selectedTask.createdAt).toLocaleDateString()} </p> 
+                      <div className='flex gap-2 mt-1'>
+           <button onClick={handleShow} className='flex gap-1 items-center  w-fit m-auto  border  border-amber-300 p-1.5 rounded-2xl border-b-4 border-l-2 cursor-pointer hover:bg-red-400 hover:text-white active:border-b-1 active:border-l-1 text-sm'> <IoTrashBinOutline /> Delete Task
+                            </button>
+           <button onClick={handleShowUpdate} className=' flex gap-1 items-center p-1.5 m w-fit m-auto  border  border-amber-300  rounded-2xl border-b-4 border-l-2 cursor-pointer hover:bg-green-400  hover:text-white active:border-b-1 active:border-l-1 text-sm'><TfiPencilAlt /> Modify Task
+                            </button>
+                      </div>
    
                   { show ? <Modal content={"Would you like to delete    the task : "}
                               title={`${selectedTask.title} ?`}
