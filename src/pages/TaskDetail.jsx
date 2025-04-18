@@ -53,16 +53,18 @@ const handleShow = ()=>{
     return setShowEdit(!showEdit)
   }
    return (
+    
         selectedTask ?  
-          <div className='w-96  m-auto mt-10 border p-5 rounded-2xl border-r-8 border-b-8 bg-amber-50 border-amber-800 flex flex-col gap-2  '>
-         <p className='border-2 border-r-4 border-b-4   border-amber-300  p-1'> Title : {selectedTask.title} </p>
-         <p className='border-2 border-r-4 border-b-4 border-amber-300  p-1'> <span >Description:</span>   {selectedTask.description} </p>
-         <p className='border-2 border-r-4 border-b-4 border-amber-300 p-1'> Status: {selectedTask.status} </p>
-         <p className='border-2 border-r-4 border-b-4 border-amber-300  p-1'> CreatedAt :  { new Date(selectedTask.createdAt).toLocaleDateString()} </p> 
-                      <div className='flex gap-2 mt-1'>
-           <button onClick={handleShow} className='flex gap-1 items-center  w-fit m-auto  border  border-amber-300 p-1.5 rounded-2xl border-b-4 border-l-2 cursor-pointer hover:bg-red-400 hover:text-white active:border-b-1 active:border-l-1 text-sm'> <IoTrashBinOutline /> Delete Task
+       <div className='w-96  m-auto mt-10  p-5 border rounded-2xl border-r-8 border-b-8  hover:border-l-8 hover:border-t-8 transition-border duration-150 bg-amber-50 border-amber-100 flex flex-col gap-2   '>
+            
+         <p className='border-2 border-r-4 border-b-4   border-amber-200 w-80 p-1 hover:bg-orange-50 hover:font-bold hover:text-stone-700 transition-all duration-200'> Title : {selectedTask.title} </p>
+         <p className='border-2 border-r-4 border-b-4 border-amber-200  p-1 w-80 transition-all duration-200 hover:bg-orange-50  hover:font-bold hover:text-stone-700'> <span >Description:</span>   {selectedTask.description} </p>
+         <p className='border-2 border-r-4 border-b-4 border-amber-200 p-1 w-80 transition-all duration-200 hover:bg-orange-50  hover:font-bold hover:text-stone-700 '> Status: {selectedTask.status} </p>
+         <p className='border-2 border-r-4 border-b-4 border-amber-200  p-1 w-80 transition-all duration-200 hover:bg-orange-50  hover:font-bold hover:text-stone-700'> CreatedAt :  { new Date(selectedTask.createdAt).toLocaleDateString()} </p> 
+         <div className='flex gap-2 mt-1 w-80 '>
+           <button onClick={handleShow} className='flex gap-1 items-center  w-fit m-auto  border  border-amber-300 p-1.5 rounded-2xl border-b-4 border-l-2 cursor-pointer hover:bg-amber-100 hover:border-red-900  hover:text-red-900 active:border-b-1 active:border-l-1 text-sm transition-colors duration-550' > <IoTrashBinOutline /> Delete Task
                             </button>
-           <button onClick={handleShowUpdate} className=' flex gap-1 items-center p-1.5 m w-fit m-auto  border  border-amber-300  rounded-2xl border-b-4 border-l-2 cursor-pointer hover:bg-green-400  hover:text-white active:border-b-1 active:border-l-1 text-sm'><TfiPencilAlt /> Modify Task
+           <button onClick={handleShowUpdate} className='flex gap-1 items-center  w-fit m-auto  border  border-amber-300 p-1.5 rounded-2xl border-b-4 border-l-2 cursor-pointer hover:bg-amber-100 hover:border-green-900  hover:text-green-900 active:border-b-1 active:border-l-1 text-sm transition-colors duration-550' ><TfiPencilAlt /> Modify Task
                             </button>
                       </div>
    

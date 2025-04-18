@@ -1,21 +1,19 @@
-import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { IoIosArrowDropup, IoIosArrowDropdown } from "react-icons/io";
 import { GlobalContext } from '../Context/GlobalContext'
 import TaskRow from '../Components/TaskRow'
 import { debounce } from 'lodash'
-import { useParams } from 'react-router-dom'
 function TaskList() {
 
   const { tasks } = useContext(GlobalContext)
-  const [selectedTaskIds, setSelectedTaskIds] = useState([])
+  // const [selectedTaskIds, setSelectedTaskIds] = useState([])
   const [sortBy, setSortBy] = useState("createdAt")
   const [sortOrder, setSortOrder] = useState(1)
-  const icon = sortOrder === 1 ? " ⬆" : "⬇"
+  const icon = sortOrder === 1 ? <IoIosArrowDropup /> : <IoIosArrowDropdown />
   const [searchQuery, setSearchQuery] = useState("")
   // checkBox Toggle
-  const toggleSelection = (taskId) => {
-
-    
-  }
+  // const toggleSelection = (taskId) => {
+  // }
 
 
   //* Gestione del Sort
@@ -87,7 +85,7 @@ function TaskList() {
 
 
   return (
-    <div className='w-fit m-auto mt-20  p-20 rounded-2xl border-stone-800 border border-b-8 border-r-5 '>
+    <div className='w-fit m-auto mt-20  p-20 rounded-2xl border-stone-800 border border-b-8 border-r-5 hover:border-amber-100 transition-colors duration-1200 hover:border-t-2 border-l-2  '>
       <label htmlFor="" className='flex gap-1 mb-2 justify-center border-2 rounded-2xl  w-fit border-stone-800 m-auto p-2 border-b-4 border-r-4'>
         <input className='border ' onChange={(e) => debounceSearch(e.target.value)} />
 
