@@ -4,12 +4,12 @@ const TaskRow = React.memo(({ task, checked ,onToggle})=> {
 
     console.log("Rendering TaskRow", task.id); 
   return (
-      <tr className='border text-center h-12 font-bold' >
+      <tr className=' text-center h-12 font-bold' >
       {/* <td className='w-62  bg-amber-50 hover:bg-stone-50 hover:bg-opacity-30 hover:cursor-pointer border-amber-100 border-r '>
 
         <input className='cursor-pointer    ' type='checkbox' checked={checked} onChange={() => onToggle(TaskRow.id)} />
       </td> */}
-      <td className='w-62  bg-amber-50 hover:bg-stone-50 hover:bg-opacity-30 hover:cursor-pointer '> 
+      <td className='w-62  bg-amber-50 hover:bg-stone-50 hover:bg-opacity-30 hover:cursor-pointer transition-colors duration-150 '> 
     
           <NavLink to={`/${task.id}`}  > 
               {task.title}  

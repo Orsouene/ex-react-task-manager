@@ -1,4 +1,5 @@
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { LuSearch } from "react-icons/lu"
 import { IoIosArrowDropup, IoIosArrowDropdown } from "react-icons/io";
 import { GlobalContext } from '../Context/GlobalContext'
 import TaskRow from '../Components/TaskRow'
@@ -85,22 +86,22 @@ function TaskList() {
 
 
   return (
-    <div className='w-fit m-auto mt-20  p-20 rounded-2xl border-stone-800 border border-b-8 border-r-5 hover:border-amber-100 transition-colors duration-1200 hover:border-t-2 border-l-2  '>
-      <label htmlFor="" className='flex gap-1 mb-2 justify-center border-2 rounded-2xl  w-fit border-stone-800 m-auto p-2 border-b-4 border-r-4'>
-        <input className='border ' onChange={(e) => debounceSearch(e.target.value)} />
+    <div className='w-fit m-auto mt-20  p-10 rounded-2xl border-[#131010] border border-b-8 border-r-5 hover:border-[#E5BA73] transition-colors duration-1200 hover:border-t-2 border-l-2  '>
+      <label htmlFor="" className='flex gap-1 mb-2 justify-center  rounded-2xl  w-fit border-[#C58940] m-auto p-2 hover:border-b-4 hover:border-r-4 hover:border-l  hover:border-t items-center transition-all duration-150 h-12'><LuSearch />
+        <input className='border border-[#C58940] '  placeholder='  Search for a task..' onChange={(e) => debounceSearch(e.target.value)} />
 
       </label>
 
-      <table >
-        <thead className='border w-fit m-auto cursor-pointer  '>
+      <table className=' ' >
+        <thead className='  w-fit m-auto cursor-pointer  '>
 
 
-          <tr className='bg-amber-100 '>
+          <tr className='bg-amber-100  '>
                 {/* <th className='border '></th> */}
                 <th onClick={() => handleSort("title")}>
                   Nome {sortBy === "title" ? icon : ""}
                 </th>
-                <th className='border p' onClick={() => handleSort("status")}>
+                <th className=' p' onClick={() => handleSort("status")}>
                   Stato {sortBy === "status" ? icon : ""}
                 </th>
 
@@ -111,7 +112,7 @@ function TaskList() {
           </tr>
         </thead>
 
-        <tbody className='border ' >
+        <tbody className='' >
           {arrayOrdinato.length ? arrayOrdinato.map((task) => (<TaskRow key={task.id} task={task} />))
             :
             <tr>
