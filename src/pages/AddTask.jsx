@@ -49,25 +49,27 @@ function AddTask() {
 
 
   return (
-    <div className='border-2  border-amber-800 mt-10  gap-1 max-w-96 m-auto border-b-8 rounded-r-2xl h-96'>
+    <div className=' w-fit border-2 hover:border-[#E5BA73] transition-colors duration-1000 border-stone-800 mt-10  gap-1  m-auto border-b-8 rounded-r-2xl h-96 '>
       <form className='flex flex-col gap-3 p-2 ' onSubmit={handleForm}  >
         {/* Title */}
-                    <label htmlFor="Status">title</label>
-                          <input type="text" name='title' value={formTitle} onChange={e => setFormTitle(e.target.value)} className='border rounded-2xl p-1 text-sm' />
+                    <label htmlFor="Status">Title</label>
+        <input type="text" name='title' value={formTitle} onChange={e => setFormTitle(e.target.value)} className='border rounded-2xl p-1 text-sm w-88' />
                                  <span className='text-red-600 text-xs'>{controllCamp}</span>
        {/* Description */}
                     <label htmlFor="description">Description</label>
-                           <textarea name='description' ref={refDescrizione} className='border rounded-2xl p-1 text-sm' />
+                           <textarea name='description' ref={refDescrizione} className='border rounded-2xl p-1 text-sm w-88' />
          {/* Status */}
                     <label htmlFor="status">Status</label>
-                            <select type="text" name='status' ref={refStato} className='border rounded-2xl p-1 text-sm' defaultValue={"To do"} >
+        <select type="text" name='status' ref={refStato} className='border rounded-2xl p-1 text-sm w-88' defaultValue={"To do"} >
                                     <option value="To do">To do</option>
                                     <option value="Doing">Doing</option>
                                     <option value="Done"> Done</option>
                             </select>
 
         {/* Button */}
-        <button type='submit' className=' w-fit m-auto  border  border-amber-800  p-2 rounded-2xl border-b-4 border-l-2 cursor-pointer hover:bg-orange-400 hover:text-white active:border-b-1 active:border-l-1 disabled:opacity-50 disabled:border-b-1 disabled:border-l-1 disabled:not-hover:bg-orange-400 disabled:not-hover:text-white disabled:cursor-not-allowed' disabled={controllCamp}>Submit</button>
+        <button type='submit' className=' w-fit m-auto  border  border-stone-800  p-2 rounded-2xl border-b-4 border-l-2 cursor-pointer hover:bg-[#E5BA73] hover:text-white hover:border-[#E5BA73] active:border-b-1 active:border-l-1 disabled:opacity-50 disabled:border-b-1 disabled:border-l-1 
+      disabled:pointer-events-none 
+        disabled:not-hover:bg-stone-600 disabled:not-hover:text-orange-100 disabled:cursor-not-allowed transition-colors duration-500' disabled={controllCamp}>Submit</button>
       </form>
 
     </div>

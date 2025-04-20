@@ -28,7 +28,7 @@ const editFormRef=useRef()
            
             title="Modifica text"
             content={
-                      <form ref={editFormRef} onSubmit={handlesubmit} className="bg-red-500 flex flex-col gap-1"> 
+                      <form ref={editFormRef} onSubmit={handlesubmit} className=" flex flex-col gap-1"> 
                               <input value={editedTask.title} onChange={(e) => editedTask("title",e)} className='border-2'/>
                             
                             <textarea value={editedTask.description} onChange={(e) => editedTask("description", e)} className='border-2' />
@@ -41,6 +41,7 @@ const editFormRef=useRef()
                     
                       </form>  
                     }
+        
             confirmText='Salva' 
             onConfirm={() => editFormRef.current.requestSubmit()}
             show={show}
