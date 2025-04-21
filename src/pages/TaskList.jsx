@@ -1,8 +1,9 @@
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { LuSearch } from "react-icons/lu"
 import { IoIosArrowDropup, IoIosArrowDropdown } from "react-icons/io";
 import { GlobalContext } from '../Context/GlobalContext'
 import TaskRow from '../Components/TaskRow'
+
 import { debounce } from 'lodash'
 function TaskList() {
 
@@ -16,7 +17,8 @@ function TaskList() {
   // const toggleSelection = (taskId) => {
   // }
 
-
+  const refFocus = useRef("")
+  useEffect(() => { refFocus.current.focus() },[])
   //* Gestione del Sort
   const handleSort = (campo) => {
     // console.log(campo)
@@ -86,57 +88,64 @@ function TaskList() {
 
 
   return (
-    <div className='w-fit m-auto mt-20  p-10 rounded-2xl border-[#131010] border border-b-8 border-r-5 hover:border-[#E5BA73] transition-colors duration-1200 hover:border-t-2 border-l-2 mx-2  '>
-      <label htmlFor="" className='flex gap-1 mb-2 justify-center  rounded-2xl  w-fit border-[#C58940] m-auto p-2 hover:border-b-4 hover:border-r-4 hover:border-l  hover:border-t items-center transition-all duration-150 h-12'><LuSearch />
-        <input className='border border-[#C58940] '  placeholder='  Search for a task..' onChange={(e) => debounceSearch(e.target.value)} />
+    <section className='mx-2 mb-10 ' >
+  
+      <div className='w-fit m-auto mt-20  p-10 rounded-2xl border-[#131010] border border-b-8 border-r-5 hover:border-[#E5BA73] transition-colors duration-1200 hover:border-t-2 border-l-2   '>
+        <label htmlFor="" className='flex gap-1 mb-2 justify-center  rounded-2xl  w-fit border-[#C58940] m-auto p-2 hover:border-b-4 hover:border-r-4 hover:border-l  hover:border-t items-center transition-all duration-150 h-12'><LuSearch />
+          <input ref={refFocus} className='border border-[#C58940] focus:border-2 focus:p-0.5 focus:outline-none ' placeholder='  Search for a task..' onChange={(e) => debounceSearch(e.target.value)}  />
 
-      </label>
+        </label>
 
-      <table className=' border ' >
-        <thead className='  w-fit m-auto cursor-pointer  '>
-          <tr className='bg-amber-100 '>
-                {/* <th className='border '></th> */}
-             
-                  <th className="" onClick={() => handleSort("title")}>
-                
-                    <span className='flex gap-3 items-center w-fit m-auto '>
-                     Name  {sortBy === "title" ? icon : ""}
-                    </span>
-                 
-                </th>
-          
-              
-                <th className='' onClick={() => handleSort("status")}>
-              <span className='flex w-fit m-auto items-center gap-3'>Status {sortBy === "status" ? icon : ""}
-                  </span> 
-                </th>
-        
-                <th onClick={() => handleSort("createdAt")} >
-                  <span className='flex items-center w-fit m-auto gap-3'>
-                Creation Date
+        <table className=' border ' >
+          <thead className='  w-fit m-auto cursor-pointer  '>
+            <tr className='bg-amber-100 '>
+              {/* <th className='border '></th> */}
+
+              <th className="" onClick={() => handleSort("title")}>
+
+                <span className='flex gap-3 items-center w-fit m-auto '>
+                  Name  {sortBy === "title" ? icon : ""}
+                </span>
+
+              </th>
+
+
+              <th className='' onClick={() => handleSort("status")}>
+                <span className='flex w-fit m-auto items-center gap-3'>Status {sortBy === "status" ? icon : ""}
+                </span>
+              </th>
+
+              <th onClick={() => handleSort("createdAt")} >
+                <span className='flex items-center w-fit m-auto gap-3'>
+                  Creation Date
                   {sortBy === "createdAt" ? icon : ""}
-                  </span>
-                  
-                </th>
-          </tr>
-        </thead>
+                </span>
 
-        <tbody className='' >
-          {arrayOrdinato.length ? arrayOrdinato.map((task) => (<TaskRow key={task.id} task={task} />))
-            :
-            <tr>
-              <td colSpan="100%" className="text-red-800 font-bold text-center">
-                No Task found..
-              </td>
+              </th>
             </tr>
+          </thead>
 
-          }
+          <tbody className='' >
+          
+            {arrayOrdinato.length ? arrayOrdinato.map((task,index) => 
+              <TaskRow key={task.id} task={task} />)
+              :
+              <tr>
+                <td colSpan="100%" className="text-red-800 font-bold text-center">
+                  No Task found..
+                </td>
+              </tr>
 
-        </tbody>
+            }
 
-      </table>
+          </tbody>
 
-    </div>
+        </table> 
+      
+    
+      </div>
+    </section>
+    
   )
 }
 

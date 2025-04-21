@@ -82,7 +82,7 @@ const handleShow = ()=>{
                               onSave={handleUpdate}
                            />
          </div> : 
-                <p> No Task foundo,
+                <p> No Task found,
                     <span>
                           You will be redirected to the tasks page in {redirect} sec...
                     </span>   

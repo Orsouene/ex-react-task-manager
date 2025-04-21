@@ -1,4 +1,5 @@
-import React, { useState, useRef, useMemo, useContext } from 'react'
+import React, { useState, useRef, useMemo, useContext,useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {GlobalContext} from "../Context/GlobalContext"
 function AddTask() {
   //* il stato del form inizialmente
@@ -6,9 +7,11 @@ function AddTask() {
   const refDescrizione = useRef("")
   const refStato = useRef("")
   const { addTask } = useContext(GlobalContext)
+  const navigate=useNavigate() ; 
 
 
-
+ const refFocus = useRef("")
+  useEffect(() => { refFocus.current.focus() },[])
 
   //* funzione per gestire il form
   const handleForm = async (e) => {
@@ -24,6 +27,7 @@ function AddTask() {
       setFormTitle("")
       refDescrizione.current.value=""
        refStato.current.value=""
+    navigate("/")
     }
    catch(error){
        alert(error)
@@ -37,10 +41,10 @@ function AddTask() {
     console.log(arraySymbole)
     const controle = arrayTitle.some((el) => arraySymbole.includes(el))
                   if (formTitle.trim() === "") {
-                                 return "Il campo non deve essere vuoto"
+                    return "The field must not be empty"
                   }
                   else if (controle) {
-                                 return "Il titolo non deve contenere dei symboli "
+                    return "The title must not contain symbols "
                   }
                   else {
                     return ""
@@ -53,7 +57,7 @@ function AddTask() {
       <form className='flex flex-col gap-3 p-2 ' onSubmit={handleForm}  >
         {/* Title */}
                     <label htmlFor="Status">Title</label>
-        <input type="text" name='title' value={formTitle} onChange={e => setFormTitle(e.target.value)} className='border rounded-2xl p-1 text-sm w-88' />
+        <input type="text" name='title' ref={refFocus} value={formTitle} onChange={e => setFormTitle(e.target.value)} className='border rounded-2xl p-1 text-sm w-88 focus:p-2' />
                                  <span className='text-red-600 text-xs'>{controllCamp}</span>
        {/* Description */}
                     <label htmlFor="description">Description</label>
@@ -71,7 +75,6 @@ function AddTask() {
       disabled:pointer-events-none 
         disabled:not-hover:bg-stone-600 disabled:not-hover:text-orange-100 disabled:cursor-not-allowed transition-colors duration-500' disabled={controllCamp}>Submit</button>
       </form>
-
     </div>
   )
 }
