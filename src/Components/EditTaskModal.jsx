@@ -33,10 +33,10 @@ const editFormRef=useRef()
                             
                             <textarea value={editedTask.description} onChange={(e) => editedTask("description", e)} className='border-2' />
                             
-                            <select value={editedTask.status} onChange={(e) => editedTask("status", e)} className='border-2'>
-                                  <option value="To do">"To do"</option>
-                                  <option value="Doing">"Doing"</option>
-                                  <option value="Done">"Done"</option>
+                            <select value={editedTask.status} onChange={(e) => editedTask("status", e)} className='border-2 '>
+                                  <option  className='font-bold' value="To do" >To do</option>
+                                  <option  className='font-bold' value="Doing">Doing</option>
+                                  <option  className='font-bold' value="Done">Done</option>
                             </select>
                     
                       </form>  

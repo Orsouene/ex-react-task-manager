@@ -5,8 +5,10 @@ import {  useNavigate, useParams } from 'react-router-dom'
 import { GlobalContext } from "../Context/GlobalContext"
 import Modal from '../Components/Modal'
 import EditTaskModal from '../Components/EditTaskModal'
+import { useTheme } from '../Context/ThemeContext';
 
 function TaskDetail() { 
+   const { isDarkMode, toggleDarkMode } = useTheme();
   //* Usare le fn e le tasks dichiarate nel costum hook
    const { tasks, removeTask, updateTask } = useContext(GlobalContext) 
   //*  Navigazione verso la pagina dei tasks
@@ -55,33 +57,42 @@ const handleShow = ()=>{
    return (
     
         selectedTask ?  
-       <div className='w-fit  m-auto mt-10  p-5 border rounded-2xl border-r-6 border-b-6 hover:border-l-6 hover:border-t-6 bg-amber-50 border-[#131010]  flex gap-5 flex-col hover:border-[#E5BA73]  transition-all duration-150   '>
-            
-         <p className='border-2 border-r-4 border-b-4   border-[#131010] w-80 p-2 hover:bg-orange-50 hover:font-bold hover:text-[C58940] transition-all duration-200 hover:border-[#E5BA73] '> Title : {selectedTask.title} </p>
-         <p className='border-2 border-r-4 border-b-4 border-[#131010]  p-2 w-80 transition-all duration-200 hover:bg-orange-50  hover:font-bold hover:text-[C58940] hover:border-[#E5BA73]'> <span >Description:</span>   {selectedTask.description} </p>
-         <p className='border-2 border-r-4 border-b-4 border-[#131010] p-2 w-80 transition-all duration-200 hover:bg-orange-50  hover:font-bold hover:text-[C58940] hover:border-[#E5BA73]'> Status: {selectedTask.status} </p>
-         <p className='border-2 border-r-4 border-b-4 border-[#131010]  p-2 w-80 transition-all duration-200 hover:bg-orange-50  hover:font-bold hover:text-[C58940] hover:border-[#E5BA73]'> CreatedAt :  { new Date(selectedTask.createdAt).toLocaleDateString()} </p> 
-         <div className='flex gap-2 mt-1 w-80 '>
-           <button onClick={handleShow} className='flex gap-1 items-center  w-fit m-auto  border  border-[#131010] p-1.5 rounded-2xl border-b-4 border-l-2 cursor-pointer hover:bg-amber-100 hover:border-red-700  hover:text-red-700 active:border-b-1 active:border-l-1 text-sm transition-colors duration-550' > <IoTrashBinOutline /> Delete Task
-                            </button>
-           <button onClick={handleShowUpdate} className='flex gap-1 items-center  w-fit m-auto  border  border-[#131010] p-1.5 rounded-2xl border-b-4 border-l-2 cursor-pointer hover:bg-amber-100 hover:border-green-900  hover:text-green-900 active:border-b-1 active:border-l-1 text-sm transition-colors duration-550' ><TfiPencilAlt /> Modify Task
-                            </button>
-                      </div>
-   
-                  { show ? <Modal content={"Would you like to delete    the task : "}
-                              title={`${selectedTask.title} ?`}
-                              onClose={handleShow}
-                              onConfirm={handleDeleteButton}
-                              show={show}
-                              /> : null}
-                         
-                           <EditTaskModal
-                              task={selectedTask}
-                              show={showEdit}
-                              onClose={handleShowUpdate}
-                              onSave={handleUpdate}
-                           />
-         </div> : 
+       <div className={`${isDarkMode ? `w-fit text-[#E5BA73]  m-auto mt-10  p-5 border rounded-2xl border-r-6 border-b-6   hover:border-l-6 hover:border-t-6  border-[#E5BA73]  flex gap-5 flex-col hover:border-[#E5BA73]  transition-colors duration-800` : `w-fit  m-auto mt-10  p-5 border rounded-2xl border-r-6 border-b-6 hover:border-l-6 hover:border-t-6 bg-amber-50 border-[#131010]  flex gap-5 flex-col hover:border-[#E5BA73]  transition-colors duration-800`}`}>
+                              
+                          <p className='border-2 border-r-4 border-b-4   border-[#131010] w-80 p-2 hover:bg-amber-50 hover:font-bold hover:text-[#C58940] transition-all duration-200 hover:border-[#E5BA73] '> Title : {selectedTask.title} 
+                          </p>
+
+                          <p className='border-2 border-r-4 border-b-4 border-[#131010]  p-2 w-80 transition-all duration-200 hover:bg-amber-50  hover:font-bold hover:text-[#C58940] hover:border-[#E5BA73]'> <span >Description:</span>   {selectedTask.description} 
+                          </p>
+
+                          <p className='border-2 border-r-4 border-b-4 border-[#131010] p-2 w-80 transition-all duration-200 hover:bg-amber-50  hover:font-bold hover:text-[#C58940] hover:border-[#E5BA73]'> Status: {selectedTask.status} 
+                          </p>
+
+                          <p className='border-2 border-r-4 border-b-4 border-[#131010]  p-2 w-80 transition-all duration-200 hover:bg-amber-50  hover:font-bold hover:text-[#C58940] hover:border-[#E5BA73]'> CreatedAt :  { new Date(selectedTask.createdAt).toLocaleDateString()} 
+                            </p> 
+
+                          <div className='flex gap-2 mt-1 w-80 '>
+                                    <button onClick={handleShow} className='flex gap-1 items-center  w-fit m-auto  border  border-[#131010] p-1.5 rounded-2xl border-b-4 border-l-2 cursor-pointer hover:bg-amber-50 hover:border-red-700  hover:text-red-700 active:border-b-1 active:border-l-1 text-sm transition-colors duration-550' > <IoTrashBinOutline /> Delete Task
+                                      </button>
+                                    <button onClick={handleShowUpdate} className='flex gap-1 items-center  w-fit m-auto  border  border-[#131010] p-1.5 rounded-2xl border-b-4 border-l-2 cursor-pointer hover:bg-amber-50 hover:border-green-900  hover:text-green-900 active:border-b-1 active:border-l-1 text-sm transition-colors duration-550' ><TfiPencilAlt /> Modify Task
+                                    </button>
+                          </div>
+                    
+                                    { show ? <Modal content={"Would you like to delete the task : "}
+                                                title={`${selectedTask.title} ?`}
+                                                onClose={handleShow}
+                                                onConfirm={handleDeleteButton}
+                                                show={show}
+                                                /> : null}
+                                          
+                                            <EditTaskModal
+                                                task={selectedTask}
+                                                show={showEdit}
+                                                onClose={handleShowUpdate}
+                                                onSave={handleUpdate}
+                                            />
+          </div>
+           : 
                 <p> No Task found,
                     <span>
                           You will be redirected to the tasks page in {redirect} sec...
