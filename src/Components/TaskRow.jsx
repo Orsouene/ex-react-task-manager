@@ -1,14 +1,8 @@
 import React from 'react'
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 const TaskRow = React.memo(({ task, checked ,onToggle})=> {
-
-    console.log("Rendering TaskRow", task.id); 
   return (
       <tr className=' text-center h-12 font-bold' >
-      {/* <td className='w-62  bg-amber-50 hover:bg-stone-50 hover:bg-opacity-30 hover:cursor-pointer border-amber-100 border-r '>
-
-        <input className='cursor-pointer    ' type='checkbox' checked={checked} onChange={() => onToggle(TaskRow.id)} />
-      </td> */}
       <td className='w-62  bg-amber-50 hover:bg-stone-50 hover:bg-opacity-30 hover:cursor-pointer transition-colors duration-150 '> 
     
           <NavLink to={`/${task.id}`}  > 

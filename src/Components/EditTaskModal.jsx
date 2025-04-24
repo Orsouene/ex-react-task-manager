@@ -29,11 +29,11 @@ const editFormRef=useRef()
             title="Modifica text"
             content={
                       <form ref={editFormRef} onSubmit={handlesubmit} className=" flex flex-col gap-1"> 
-                              <input value={editedTask.title} onChange={(e) => editedTask("title",e)} className='border-2'/>
+                              <input value={taskAggiornato.title } onChange={(e) => editedTask("title",e)} className='border-2'/>
                             
-                            <textarea value={editedTask.description} onChange={(e) => editedTask("description", e)} className='border-2' />
+                <textarea value={taskAggiornato.description} onChange={(e) => editedTask("description", e)} className='border-2' />
                             
-                            <select value={editedTask.status} onChange={(e) => editedTask("status", e)} className='border-2 '>
+                <select value={taskAggiornato.status} onChange={(e) => editedTask("status", e)} className='border-2 '>
                                   <option  className='font-bold' value="To do" >To do</option>
                                   <option  className='font-bold' value="Doing">Doing</option>
                                   <option  className='font-bold' value="Done">Done</option>

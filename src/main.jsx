@@ -6,7 +6,6 @@ import { ThemeProvider } from './Context/ThemeContext.jsx'
 
 createRoot(document.getElementById('root')).render(
    <StrictMode>
- 
      <ThemeProvider>
     <App />
   </ThemeProvider>

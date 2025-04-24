@@ -25,15 +25,16 @@ function useTasks() {
       },
       body: JSON.stringify(newTask),
     });
-    const res = await sendData.json();
+    const res= await sendData.json();
+
     if (res.success === true) {
-      return setTask([...tasks, newTask]);
+
+      setTask((prevTasks) => [...prevTasks, res.task]);
     } else {
       throw new Error(res.message);
     }
   };
-
-  //*REMOVE-task***/
+//*REMOVE-task***/
   const removeTask = async (taskId) => {
     const deleteData = await fetch(`${url}/${taskId}`, {
       method: "DELETE",
@@ -50,8 +51,6 @@ function useTasks() {
     }
   };
   //*UPDATE-task***/
- 
- 
   const updateTask =async (updatedTask) => {
  try {
    const updatingData = await fetch(`${url}/${updatedTask.id}`, {
@@ -72,8 +71,7 @@ function useTasks() {
    throw new Error(error)
  }
   };
-
-  return { tasks, addTask, removeTask, updateTask };
+return { tasks, addTask, removeTask, updateTask };
 }
 
 export default useTasks;

@@ -3,7 +3,6 @@ import { LuSearch } from "react-icons/lu"
 import { IoIosArrowDropup, IoIosArrowDropdown } from "react-icons/io";
 import { GlobalContext } from '../Context/GlobalContext'
 import TaskRow from '../Components/TaskRow'
-
 import { debounce } from 'lodash'
 function TaskList() {
 
@@ -13,10 +12,6 @@ function TaskList() {
   const [sortOrder, setSortOrder] = useState(1)
   const icon = sortOrder === 1 ? <IoIosArrowDropup /> : <IoIosArrowDropdown />
   const [searchQuery, setSearchQuery] = useState("")
-  // checkBox Toggle
-  // const toggleSelection = (taskId) => {
-  // }
-
   const refFocus = useRef("")
   useEffect(() => { refFocus.current.focus() },[])
   //* Gestione del Sort
@@ -128,7 +123,7 @@ function TaskList() {
                   <tbody className='' >
                   
                             {arrayOrdinato.length ? arrayOrdinato.map((task,index) => 
-                              <TaskRow key={task.id} task={task} />)
+                              <TaskRow key={index} task={task} />)
                               :
                               <tr>
                                     <td colSpan="100%" className="text-red-800 font-bold text-center">
