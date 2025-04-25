@@ -12,7 +12,7 @@ function TaskDetail() {
   //* Usare le fn e le tasks dichiarate nel costum hook
    const { tasks, removeTask, updateTask } = useContext(GlobalContext) 
   //*  Navigazione verso la pagina dei tasks
-   const navigate = useNavigate()
+    const navigate = useNavigate()
    //*CONTATORE
    const [redirect, setRedirect]=useState(3)
 //* il stato  del show per il modale del delete
@@ -29,11 +29,11 @@ const [show,setShow]=useState(false)
   const handleDeleteButton =async() =>{
    try {
          await removeTask(selectedTask.id) 
-         alert("task eliminato")
+         alert("task deleted")
          setInterval(() => setRedirect((prev) => prev - 1),1000)
          setTimeout(()=>navigate(-1),3000)
    } catch (error) {
-     alert("l'errore  : "+ error.message)
+     alert("The error is:  : "+ error.message)
    }
   }
 //* Funzione per gestire l'update del task
@@ -42,7 +42,7 @@ const [show,setShow]=useState(false)
       await updateTask(taskAggiornato)
       setShowEdit(false)
     } catch (error) {
-      alert("l'errore è ",error)
+      alert("The error is:  ",error)
     }
    }
 //*HANDLE-SHOW-delete
@@ -93,9 +93,9 @@ const handleShow = ()=>{
                                             />
           </div>
            : 
-                <p> No Task found,
+                <p className='bg-amber-50 w-fit m-auto flex flex-col text-center  font-bold mt-50 rounded-2xl p-5 border-2 ' > No Task found !!,
                     <span>
-                          You will be redirected to the tasks page in {redirect} sec...
+                          You will be redirected to the tasks page in  <span className=' text-xl'>{redirect}</span> sec...
                     </span>   
                </p>
    

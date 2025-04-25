@@ -61,7 +61,7 @@ function useTasks() {
      body: JSON.stringify(updatedTask),
    });
 
- const {success,message,task:newTask}= await updatingData.json()
+ const {success,task:newTask}= await updatingData.json()
   if(success){
               setTask(prev=>prev.map(
                 oldTask=>oldTask.id===newTask.id?newTask:oldTask

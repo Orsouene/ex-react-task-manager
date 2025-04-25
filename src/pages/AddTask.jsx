@@ -23,7 +23,7 @@ function AddTask() {
     }
   try{
       await addTask(myForm)
-      alert("Form inviato")
+    alert("Form submitted")
       setFormTitle("")
       refDescrizione.current.value=""
        refStato.current.value=""

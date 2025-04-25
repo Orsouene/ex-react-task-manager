@@ -1,16 +1,16 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-const TaskRow = React.memo(({ task, checked ,onToggle})=> {
+const TaskRow = React.memo(({ task})=> {
   return (
-      <tr className=' text-center h-12 font-bold' >
-      <td className='w-62  bg-amber-50 hover:bg-stone-50 hover:bg-opacity-30 hover:cursor-pointer transition-colors duration-150 '> 
+      <tr className='  text-center h-12 font-bold' >
     
-          <NavLink to={`/${task.id}`}  > 
-              {task.title}  
-              </NavLink> 
        
-      </td>
-     
+            <td className='w-62  bg-amber-50 hover:bg-stone-50 hover:bg-opacity-30 hover:cursor-pointer transition-colors duration-150 '>   <NavLink to={`/${task.id}`}  >
+                    {task.title}        </NavLink>
+            </td>
+
+   
+       
       <td
         className={`w-62 bg-amber-100 ${task.status === "To do"
             ? " hover:bg-red-700"
